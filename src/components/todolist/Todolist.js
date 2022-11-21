@@ -7,12 +7,13 @@ import Todosearch from "../todolist/Todosearch";
 import Footer from "../todolist/Footer";
 
 const Todolist = (props) => {
-  const [filteredData, setfilteredData] = useState([]);
+  const [data, setData] = useState([]);
+  const [filteredData, setfilteredData] = useState(data);
   const [isDataUpdate, setIsDataUpdate] = useState([]);
-  const [filterArray, setFilterArray] = useState([]);
   const [change, setChange] = useState("");
 
   useEffect(() => {
+    setData(props.data);
     setfilteredData(props.data);
   }, [isDataUpdate]);
 
@@ -22,29 +23,18 @@ const Todolist = (props) => {
       id: Math.random().toString(),
     };
     setfilteredData((prevTodoData) => {
-      return[...prevTodoData,todoData];
+      return [...prevTodoData, todoData];
+    });
+    setData((prevTodoData) => {
+      return [...prevTodoData, todoData];
     });
   };
   const Searchdata = (inputValue) => {
-    if (inputValue.trim().length > 0) {
-      let searchFilteredData = filteredData.filter((searchItem) => {
-        if (inputValue.trim().length === 0) {
-          return searchItem;
-        } else {
-          return searchItem.value.toLowerCase().includes(inputValue);
-        }
-      });
-      // if(searchFilteredData.length === 0){
-      //   setIsDataUpdate([]);
-      // } else {
-      //   setfilteredData(searchFilteredData);
-      // }
-      setfilteredData(searchFilteredData);
-      // setIsDataUpdate(filteredData);
-    } else {
-      setIsDataUpdate(filteredData);
-    }
-    setIsDataUpdate(filteredData);
+    const filterItems = data.filter((item) => {
+      return item.value.toLowerCase().indexOf(inputValue.toLowerCase()) > -1; // true
+    });
+    setfilteredData(filterItems);
+    console.log(filterItems);
   };
 
   const handleClick = (changeState) => {
@@ -58,24 +48,24 @@ const Todolist = (props) => {
     }
   };
   const onDeleteUser = (dataId) => {
-    const deleteUserData = filteredData.filter(data1 => data1.id !==  dataId);
+    const deleteUserData = filteredData.filter((data1) => data1.id !== dataId);
     setfilteredData(deleteUserData);
   };
   const footerChangeFn = (footerCurrentState) => {
-    if(footerCurrentState === 'all'){
-      setfilteredData(props.data)
+    if (footerCurrentState === "all") {
+      setfilteredData(props.data);
     }
-    if(footerCurrentState === 'completed'){
-      const completedData = filteredData.filter((item) =>{
+    if (footerCurrentState === "completed") {
+      const completedData = filteredData.filter((item) => {
         return item.isChecked === true;
       });
-      setfilteredData(completedData)
+      setfilteredData(completedData);
     }
-    if(footerCurrentState == 'active'){
-      const activeData = filteredData.filter((item) =>{
+    if (footerCurrentState == "active") {
+      const activeData = filteredData.filter((item) => {
         return item.isChecked === false;
       });
-      setfilteredData(activeData)
+      setfilteredData(activeData);
     }
     console.log(footerCurrentState);
     // setChange(footerCurrentState);
@@ -83,15 +73,16 @@ const Todolist = (props) => {
   };
   const checkedUpdatedItem = (itemId) => {
     const updatedData = props.data.map((item) => {
-      return item.id === itemId ? {...item,isChecked : !item.isChecked} : item;
-    })
+      return item.id === itemId
+        ? { ...item, isChecked: !item.isChecked }
+        : item;
+    });
     console.log(updatedData);
     setfilteredData(updatedData);
-  }
+  };
 
   return (
     <div>
-      {console.log(filteredData)}
       <Card className="todolist">
         <h1>Things To Do</h1>
 
@@ -100,7 +91,7 @@ const Todolist = (props) => {
             case "add":
               return <Todoadd onSaveTodoData={onSaveTodoData} />;
             case "search":
-              return <Todosearch  Searchdata={Searchdata} />;
+              return <Todosearch Searchdata={Searchdata} />;
             default:
               return null;
           }
@@ -109,7 +100,11 @@ const Todolist = (props) => {
         <ul className="todolistitem">
           {filteredData.map((dataitem, i) => (
             <li key={i}>
-             <TodolistItem dataitem={dataitem} checkedUpdatedItem={checkedUpdatedItem} onDeleteUser={onDeleteUser}/>
+              <TodolistItem
+                dataitem={dataitem}
+                checkedUpdatedItem={checkedUpdatedItem}
+                onDeleteUser={onDeleteUser}
+              />
             </li>
           ))}
         </ul>
