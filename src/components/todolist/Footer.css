@@ -1,0 +1,32 @@
+.add {
+  background: url(../../assets/images/add.svg) no-repeat center;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+}
+.search {
+  background: url(../../assets/images/search.svg) no-repeat center;
+  display: inline-block;
+  height: 18px;
+  width: 18px;
+}
+.footer {
+  border-top: 1px solid #ddd;
+  background-color: #f4fce8;
+  margin: 0 -20px -10px -20px;
+  padding: 12px 20px;
+  position: relative;
+  color: #777;
+}
+.filterul{
+    margin: 0;
+    padding: 0;
+    list-style: none;
+}
+.filterul li{
+    display: inline-block;
+}
+.footerul{
+    display: inline-block;
+    margin-left: 265px;
+}
