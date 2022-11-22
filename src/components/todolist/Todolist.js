@@ -9,13 +9,13 @@ import Footer from "../todolist/Footer";
 const Todolist = (props) => {
   const [data, setData] = useState([]);
   const [filteredData, setfilteredData] = useState(data);
-  const [isDataUpdate, setIsDataUpdate] = useState([]);
+  // const [isDataUpdate, setIsDataUpdate] = useState([]);
   const [change, setChange] = useState("");
 
   useEffect(() => {
     setData(props.data);
     setfilteredData(props.data);
-  }, [isDataUpdate]);
+  }, []);
 
   const onSaveTodoData = (enteredTodoData, i) => {
     const todoData = {
@@ -50,33 +50,56 @@ const Todolist = (props) => {
   const onDeleteUser = (dataId) => {
     const deleteUserData = filteredData.filter((data1) => data1.id !== dataId);
     setfilteredData(deleteUserData);
+    setData(deleteUserData);
   };
   const footerChangeFn = (footerCurrentState) => {
     if (footerCurrentState === "all") {
-      setfilteredData(props.data);
+      setfilteredData(data);
+      // setData((prevTodoData) => {
+      //   return [...prevTodoData];
+      // });
+      console.log(data);
     }
     if (footerCurrentState === "completed") {
       const completedData = filteredData.filter((item) => {
         return item.isChecked === true;
       });
       setfilteredData(completedData);
+      setData((prevTodoData) => {
+        return [...prevTodoData];
+      });
+      // setData(completedData);
+      console.log(data);
+      // setData((prevTodoData) => {
+      //   return [...prevTodoData, data];
+      // });
     }
     if (footerCurrentState == "active") {
       const activeData = filteredData.filter((item) => {
         return item.isChecked === false;
       });
-      setfilteredData(activeData);
+      setfilteredData(
+       activeData
+      );
+      setData((prevTodoData) => {
+        return [...prevTodoData];
+      });
+      // console.log( [...data, activeData]);
+      // setData((prevTodoData) => {
+      //   return [...prevTodoData, data];
+      // });
     }
-    console.log(footerCurrentState);
+    // console.log(footerCurrentState);
     // setChange(footerCurrentState);
     // props.handleFooterClick(footerCurrentState);
   };
   const checkedUpdatedItem = (itemId) => {
-    const updatedData = props.data.map((item) => {
+    const updatedData = data.map((item) => {
       return item.id === itemId
         ? { ...item, isChecked: !item.isChecked }
         : item;
     });
+    // setData(updatedData); 
     console.log(updatedData);
     setfilteredData(updatedData);
   };
