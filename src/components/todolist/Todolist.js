@@ -43,6 +43,7 @@ const Todolist = (props) => {
     }
     if (change !== changeState) {
       setChange(changeState);
+      setfilteredData(data)
     } else {
       setChange("");
     }
@@ -61,7 +62,7 @@ const Todolist = (props) => {
       console.log(data);
     }
     if (footerCurrentState === "completed") {
-      const completedData = filteredData.filter((item) => {
+      const completedData = data.filter((item) => {
         return item.isChecked === true;
       });
       setfilteredData(completedData);
@@ -75,7 +76,7 @@ const Todolist = (props) => {
       // });
     }
     if (footerCurrentState == "active") {
-      const activeData = filteredData.filter((item) => {
+      const activeData = data.filter((item) => {
         return item.isChecked === false;
       });
       setfilteredData(
