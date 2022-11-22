@@ -10,7 +10,7 @@ const Todolist = (props) => {
   const [data, setData] = useState([]);
   const [filteredData, setfilteredData] = useState(data);
   // const [isDataUpdate, setIsDataUpdate] = useState([]);
-  const [change, setChange] = useState("");
+  const [change, setChange] = useState('add');
 
   useEffect(() => {
     setData(props.data);
