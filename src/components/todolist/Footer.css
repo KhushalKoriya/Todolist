@@ -4,6 +4,7 @@
   height: 18px;
   width: 18px;
   margin-right: 6px;
+  cursor: pointer
 }
 .search {
   background: url(../../assets/images/search.svg) no-repeat center;
@@ -11,6 +12,7 @@
   height: 18px;
   width: 18px;
   margin-right: 6px;
+  cursor: pointer
 }
 .footerr {
   border-top: 1px solid #ddd;
@@ -32,6 +34,7 @@
     margin: 0;
     padding: 0;
     list-style: none;
+    cursor: pointer
 }
 .filterul li{
     display: inline-block;
