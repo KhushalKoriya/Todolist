@@ -94,14 +94,15 @@ const Todolist = (props) => {
     // props.handleFooterClick(footerCurrentState);
   };
   const checkedUpdatedItem = (itemId) => {
-    const updatedData = data.map((item) => {
+    const updatedData = filteredData.map((item) => {
       return item.id === itemId
         ? { ...item, isChecked: !item.isChecked }
         : item;
     });
-    // setData(updatedData); 
+   
     console.log(updatedData);
     setfilteredData(updatedData);
+    setData(updatedData); 
   };
 
   return (
