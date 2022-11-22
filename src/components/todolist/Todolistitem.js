@@ -23,15 +23,15 @@ setDeleteData(userDeleteId);
   }
   return (
    <>
-    <input type="checkbox" value={props.dataitem.isChecked} onChange ={()=>itemChangeHandler(props.dataitem.id)}/>
-    <span
+    <input type="checkbox" className="checkbox " value={props.dataitem.isChecked} onChange ={()=>itemChangeHandler(props.dataitem.id)}/>
+    <span 
       className={
         props.dataitem.isChecked ? "checked-item" : "not-checked-item"
       }
     >
       {props.dataitem.value}
     </span>
-    <button type ="button" onClick={() => clickDeleteData(props.dataitem.id)}>Delete</button>
+    <a className="delete" onClick={() => clickDeleteData(props.dataitem.id)}></a>
     {deleted && (
         <Tododelete
         onClose={onClose}

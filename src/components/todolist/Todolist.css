@@ -17,3 +17,13 @@ h1 {
   line-height: 1.1;
   color: #473f3fba;
 }
+.todolistitem {
+  padding-left: 0;
+  list-style: none;
+  margin-top: 19px;
+  margin-bottom: 22px;
+  font-size: 18px;
+}
+li{
+  border-bottom: 1px solid #ddd;
+}

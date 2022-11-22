@@ -24,7 +24,7 @@ const Todoadd = (props) => {
           type="text"
           className="form-control"
           value={enteredValue}
-          placeholder="Add New Value"
+          placeholder="Add New Car"
           onChange={valueChangeHandler}
         />
         <button type="submit" hidden>Add</button>

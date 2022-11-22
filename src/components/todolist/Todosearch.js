@@ -16,7 +16,7 @@ const Todosearch = (props) => {
         ref={inputref}
         // value={inputValue}
         onChange={(e)=>inputHandler(e)}
-        placeholder="Search"
+        placeholder="Search Car"
       />
     </div>
   );

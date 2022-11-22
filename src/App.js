@@ -4,12 +4,12 @@ import Todolist from './components/todolist/Todolist';
 
 const dummydata=[{
   id:'1',
-  value:'hello',
+  value:'Mercedes',
   isChecked : false
 },
 {
   id:'2',
-  value:'test',
+  value:'Audi',
   isChecked : false
 }]
 function App() {
