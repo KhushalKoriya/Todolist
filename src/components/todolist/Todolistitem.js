@@ -23,7 +23,7 @@ setDeleteData(userDeleteId);
   }
   return (
    <>
-    <input type="checkbox" className="checkbox " value={props.dataitem.isChecked} onChange ={()=>itemChangeHandler(props.dataitem.id)}/>
+    <input type="checkbox" className="checkbox " checked={props.dataitem.isChecked} onChange ={()=>itemChangeHandler(props.dataitem.id)}/>
     <span 
       className={
         props.dataitem.isChecked ? "checked-item" : "not-checked-item"
